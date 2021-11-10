@@ -22,7 +22,7 @@ public class InDemo {
 			/* Each line has the rank of a country, then its
 			 * name, then its production in metric tons, and
 			 * finally the fraction of world salt output it produces. */
-			int rank = in.readInt();
+			// int rank = in.readInt();
 			String name = in.readString();
 			int tons = in.readInt();
 			double fractionProduced = in.readDouble();
