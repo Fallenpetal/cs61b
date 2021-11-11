@@ -47,7 +47,7 @@ public class NBody{
 			StdDraw.clear();
 			StdDraw.picture(0,0,img);
 			for(int k=0;k<p.length;k++){
-				StdDraw.picture(p[k].xxPos,p[k].yyPos,"images/"+p[k].imgFileName);
+				p[k].draw();
 			}
 				StdDraw.show();
 				StdDraw.pause(10);
