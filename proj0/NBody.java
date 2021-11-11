@@ -9,11 +9,11 @@ public class NBody{
 
 	public static Planet[] readPlanets(String path){
 		In in=new In(path);
-		Planet[] p =new Planet[5];
-		int firstinteger=in.readInt();
+		int numbersum=in.readInt();		
+		Planet[] p =new Planet[numbersum];
 		double ReadRadius=in.readDouble();
 		
-		for(int i=0;i<5;i++){
+		for(int i=0;i<numbersum;i++){
 			double xxPos=in.readDouble();
 			double yyPos=in.readDouble();
 			double xxVel=in.readDouble();
