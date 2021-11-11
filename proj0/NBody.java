@@ -25,23 +25,12 @@ public class NBody{
 		return p;
 	}
 
-	public static void DrawBackground(double R){
-		String img="images/starfield.jpg";
-		StdDraw.setScale(-R,R);
-		StdDraw.clear();
-		StdDraw.picture(0,0,img);
-	}
-
 	public static void main(String[] args){
 		double T=Double.parseDouble(args[0]);
 		double dt=Double.parseDouble(args[1]);
 		String filename=args[2];
 		double R=readRadius(filename);
 		Planet[] p=readPlanets(filename);
-		DrawBackground(R);
-		for(int i=0;i<p.length;i++){
-			p[i].Draw();
-		}
 		StdDraw.enableDoubleBuffering();
 		for(int t=0;t<=T;t+=dt){
 			double xForce[]=new double[5];
@@ -53,7 +42,10 @@ public class NBody{
 			for(int j=0;j<p.length;j++){
 				p[j].update(dt,xForce[j],yForce[j]);
 			}
-			DrawBackground(R);
+			String img="images/starfield.jpg";
+			StdDraw.setScale(-R,R);
+			StdDraw.clear();
+			StdDraw.picture(0,0,img);
 			for(int k=0;k<p.length;k++){
 				p[k].Draw();
 			}
