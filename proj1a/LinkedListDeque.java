@@ -1,6 +1,6 @@
 public class LinkedListDeque<T> {
 
-	public class LinkNode<T> {
+	private class LinkNode<T> {
 		public T data;
 		public LinkNode prior;
 		public LinkNode next;
@@ -16,8 +16,8 @@ public class LinkedListDeque<T> {
 		}
 	}
 
-	public LinkNode sentinel;
-	public int size;
+	private LinkNode sentinel;
+	private int size;
 
 	public LinkedListDeque(){
 		sentinel = new LinkNode<>(999);
@@ -105,7 +105,7 @@ public class LinkedListDeque<T> {
 /**Actrully getRecursive must add a new method,
    because the parameters are not enough,
    you can't compelete it by only one parameter which is index*/
-	public T getRecursive_expend(LinkNode p,int index){
+	private T getRecursive_expend(LinkNode p,int index){
 		if(index == 0){
 			return (T)p.data;
 		}
