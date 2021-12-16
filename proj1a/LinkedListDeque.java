@@ -26,11 +26,6 @@ public class LinkedListDeque<T> {
 		size = 0;
 	}
 
-	// public void addFirst(T item){
-	// 	sentinel.next.prior = new LinkNode<>(item,sentinel,sentinel.next);
-	// 	sentinel.next=sentinel.next.prior;
-	// 	size = size+1;
-	// }
 
 	public void addFirst(T item){
 		LinkNode p = new LinkNode<>(item);
@@ -107,8 +102,22 @@ public class LinkedListDeque<T> {
 
 	}
 
-//	public T getRecursive(int index){
-//
-//	}
+/**Actrully getRecursive must add a new method,
+   because the parameters are not enough,
+   you can't compelete it by only one parameter which is index*/
+	public T getRecursive_expend(LinkNode p,int index){
+		if(index == 0){
+			return (T)p.data;
+		}
+		return getRecursive_expend(p.next,index-1);
+
+	}
+
+	public T getRecursive(int index){
+		if(index > size){
+			return null;
+		}
+		return getRecursive_expend(sentinel.next,index);
+	}
 
 }

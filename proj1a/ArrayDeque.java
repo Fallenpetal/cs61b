@@ -20,7 +20,7 @@ public class ArrayDeque<T>{
  			return false;
  	}
     
-    public void resize(int capacity){
+    private void resize(int capacity){
     	T[] a = (T[]) new Object[capacity];
     	if(back>front){
     	System.arraycopy(items,0,a,0,length);    		
@@ -44,8 +44,8 @@ public class ArrayDeque<T>{
     	}
 		else {
 			items[front--] = data;
-			size = size + 1;
 		}
+			size = size + 1;
     }
 
  	public void addLast(T data){
@@ -67,7 +67,12 @@ public class ArrayDeque<T>{
  		}
  		T temp = items[back];
  		items[back] = null;
- 		back = (back-1)%length;
+		if(back == 0){
+			back = length - 1;
+		}
+		else{
+ 		back = (back-1)%length;			
+ 	}
  		size = size-1;
  		return (T)temp;
  	}
