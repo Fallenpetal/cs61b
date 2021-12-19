@@ -43,8 +43,8 @@ public class TestPalindrome {
     }
 
     @Test
-    public void testIsPalindrome_overload1(){
-        assertTrue(palindrome.isPalindrome("flake",offByOne));
+    public void testIsPalindromeOverload1() {
+        assertTrue(palindrome.isPalindrome("flake", offByOne));
     }
 
 }

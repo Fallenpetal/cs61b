@@ -9,27 +9,27 @@ public class TestOffByOne {
 
     // Your tests go here.
     @Test
-    public void TestOffByOne1(){
-        assertTrue(offByOne.equalChars('a','b'));
+    public void testOffByOne1() {
+        assertTrue(offByOne.equalChars('a', 'b'));
     }
 
     @Test
-    public void TestOffByOne2(){
-        assertFalse(offByOne.equalChars('a','z'));
+    public void testOffByOne2() {
+        assertFalse(offByOne.equalChars('a', 'z'));
     }
 
     @Test
-    public void TestOffByOne3(){
-        assertTrue(offByOne.equalChars('f','e'));
+    public void testOffByOne3() {
+        assertTrue(offByOne.equalChars('f', 'e'));
     }
 
     @Test
-    public void TestOffByOne4(){
-        assertTrue(offByOne.equalChars('%','&'));
+    public void testOffByOne4() {
+        assertTrue(offByOne.equalChars('%', '&'));
     }
 
     @Test
-    public void TestOffByOne5(){
-        assertFalse(offByOne.equalChars('x','X'));
+    public void testOffByOne5() {
+        assertFalse(offByOne.equalChars('x', 'Y'));
     }
 }
