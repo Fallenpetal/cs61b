@@ -6,11 +6,7 @@ public class OffByN implements CharacterComparator {
     }
 
     public boolean equalChars(char x, char y) {
-        if (x - y == -distance || x - y == distance) {
-            return true;
-        }  else {
-            return false;
-        }
+        return  (x - y == -distance || x - y == distance);
     }
 
 }

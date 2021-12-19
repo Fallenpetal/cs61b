@@ -1,17 +1,17 @@
-public class LinkedListDeque<Item> implements Deque<Item>{
+public class LinkedListDeque<Item> implements Deque<Item> {
 
     private class LinkNode<Item> {
-        public Item data;
-        public LinkNode prior;
-        public LinkNode next;
+        private Item data;
+        private LinkNode prior;
+        private LinkNode next;
 
-        public LinkNode(Item value, LinkNode prev_pointer, LinkNode next_pointer) {
+        LinkNode(Item value, LinkNode prevPointer, LinkNode nextPointer) {
             data = value;
-            prior = prev_pointer;
-            next = next_pointer;
+            prior = prevPointer;
+            next = nextPointer;
         }
 
-        public LinkNode(Item value) {
+        LinkNode(Item value) {
             data = value;
         }
     }
@@ -46,11 +46,8 @@ public class LinkedListDeque<Item> implements Deque<Item>{
     }
 
     public boolean isEmpty() {
-        if (size == 0) 
-            return true;
-        else 
-            return false;
-        }
+        return  (size == 0);
+    }
     
     public int size() {
         return size;
@@ -72,7 +69,7 @@ public class LinkedListDeque<Item> implements Deque<Item>{
         if (p == sentinel) {
             return null;
         }
-        Item temp = (Item)p.data;
+        Item temp = (Item) p.data;
         p.next.prior = sentinel;
         sentinel.next = p.next;
         size = size - 1;
@@ -84,7 +81,7 @@ public class LinkedListDeque<Item> implements Deque<Item>{
         if (p == sentinel) {
             return null;
         }
-        Item temp = (Item)p.data;
+        Item temp = (Item) p.data;
         p.prior.next = sentinel;
         sentinel.prior = p.prior;
         size = size - 1;
@@ -96,7 +93,7 @@ public class LinkedListDeque<Item> implements Deque<Item>{
         int flag = 0;
         while (p != sentinel) {
             if (flag == index) {
-                return (Item)p.data;
+                return (Item) p.data;
             }
             flag++;
             p = p.next;
@@ -108,11 +105,11 @@ public class LinkedListDeque<Item> implements Deque<Item>{
     /**Actrully getRecursive must add a new method,
    because the parameters are not enough,
    you can't compelete it by only one parameter which is index*/
-    private Item getRecursive_expend(LinkNode p, int index) {
+    private Item getRecursiveExpend(LinkNode p, int index) {
         if (index == 0) {
-            return (Item)p.data;
+            return (Item) p.data;
         }
-        return getRecursive_expend(p.next, index - 1);
+        return getRecursiveExpend(p.next, index - 1);
 
     }
 
@@ -120,7 +117,7 @@ public class LinkedListDeque<Item> implements Deque<Item>{
         if (index > size) {
             return null;
         }
-        return getRecursive_expend(sentinel.next, index);
+        return getRecursiveExpend(sentinel.next, index);
     }
 
 }

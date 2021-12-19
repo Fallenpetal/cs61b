@@ -18,11 +18,7 @@ public class Palindrome {
                 flag++;
             }
         }
-        if (flag == word.length()) {
-            return true;
-        } else {
-            return false;
-        }
+        return (flag == word.length());
     }
 
     public boolean isPalindrome(String word, CharacterComparator cc) {
@@ -35,10 +31,6 @@ public class Palindrome {
                 flag++;
             }
         }
-        if (flag == word.length() / 2) {
-            return true;
-        } else {
-            return false;
-        }
+        return  (flag == word.length() / 2);
     }
 }
