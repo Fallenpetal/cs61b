@@ -8,30 +8,30 @@ public class TestArrayDequeGold {
 
     @Test
     public void testSolution1() {
-        Integer actual ;
-        Integer expect ;
+        Integer actual;
+        Integer expect;
         String message = "\n";
-        for(int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 1000; i++) {
             double number = StdRandom.uniform();
 //            System.out.println("第"+i+"次循环"+number);
             if (number < 0.25) {
                 p1.addFirst(i);
                 p2.addFirst(i);
-                message = message + "addFirst("+ i + ")\n";
+                message = message + "addFirst(" + i + ")\n";
 //                System.out.println(message);
                 continue;
             }
-            if(number < 0.5) {
+            if (number < 0.5) {
                 p1.addLast(i);
                 p2.addLast(i);
-                message = message + "addLast("+ i + ")\n";
+                message = message + "addLast(" + i + ")\n";
 //                System.out.println(message);
                 continue;
             }
-            if(number < 0.75) {
-                if(p2.size() == 0 || p1.size() == 0) {
-                continue;
-            }
+            if (number < 0.75) {
+                if (p2.size() == 0 || p1.size() == 0) {
+                    continue;
+                }
                 actual = p1.removeFirst();
                 expect = p2.removeFirst();
 
@@ -40,8 +40,8 @@ public class TestArrayDequeGold {
 //                System.out.println(message);
                 continue;
             }
-            if(number < 1) {
-                if(p2.size() == 0 || p1.size() == 0) {
+            if (number < 1) {
+                if (p2.size() == 0 || p1.size() == 0) {
                     continue;
                 }
                 actual = p1.removeLast();
