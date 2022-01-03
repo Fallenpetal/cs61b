@@ -13,18 +13,10 @@ public class TestArrayRingBuffer {
         arb.enqueue(1);
         arb.enqueue(2);
         arb.enqueue(3);
-        arb.enqueue(4);
-        arb.enqueue(5);
         arb.dequeue();
         arb.dequeue();
         arb.dequeue();
-        arb.enqueue(6);
-        arb.enqueue(7);
-        arb.enqueue(8);
-        arb.dequeue();
-        arb.dequeue();
-        arb.dequeue();
-        arb.enqueue(9);
+        System.out.println(arb.peek());
     }
 
     /** Calls tests for ArrayRingBuffer. */
