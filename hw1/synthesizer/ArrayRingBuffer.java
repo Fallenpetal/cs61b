@@ -59,7 +59,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
      */
     public T peek() {
         if (isEmpty()) {
-            return null;
+            throw new RuntimeException("Defined by myself");
         } else {
             return rb[first];
         }
@@ -73,11 +73,11 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
         private int position;
 
         KeyIterator() {
-            position = 0;
+            position = first;
         }
 
         public boolean hasNext() {
-            return position < capacity;
+            return (position + 1) % capacity != last ;
         }
 
         public T next() {
