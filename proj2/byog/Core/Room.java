@@ -11,13 +11,14 @@ public class Room {
     protected int height;
     protected int xStart;
     protected int yStart;
-    private static final Random RANDOM = new Random();
+    private static long SEED = 0;
     protected Position leftBottom;
     protected Position rightBottom;
     protected Position rightTop;
     protected Position leftTop;
 
-    public Room(int w, int h, Position p) {
+    public Room(int w, int h, Position p, long seedInput) {
+        SEED = seedInput;
         width = w - 1;
         height = h - 1;                  //拐角单独画，因此减1
         xStart = p.x;
@@ -30,22 +31,23 @@ public class Room {
 
 
     public Position randomMove(int flag) {
+        Random gameRandom = new Random(SEED);
         int dx = 0;
         int dy = 0;
         Position p = new Position(this.xStart, this.yStart);
         switch (flag) {
             case 0 :
-                dx = RANDOM.nextInt(width - 1) + 1;      //宽度已经比真实宽度小1 width = truly width - 1
+                dx = gameRandom.nextInt(width - 1) + 1;  //宽度已经比真实宽度小1 width = truly width - 1
                 p.x = p.x + dx; break;        //随机地在Room的四条边界上移动,0为bottom,1为top,2为left,3为right
             case 1 :
-                dx = RANDOM.nextInt(width - 1) + 1;
+                dx = gameRandom.nextInt(width - 1) + 1;
                 p.x = p.x + dx;
                 p.y = yStart + height; break;
             case 2 :
-                dy = RANDOM.nextInt(height - 1) + 1;
+                dy = gameRandom.nextInt(height - 1) + 1;
                 p.y = p.y + dy; break;
             case 3 :
-                dy = RANDOM.nextInt(height - 1) + 1;
+                dy = gameRandom.nextInt(height - 1) + 1;
                 p.y = p.y + dy;
                 p.x = xStart + width; break;
             default:

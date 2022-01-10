@@ -41,7 +41,7 @@ public class MapGenerator {
             int width = gameRandom.nextInt(10) + 3;
             int height = gameRandom.nextInt(10) + 3;              //+1是为了防止产生0，导致数组越界
             Position p = new Position(xStart, yStart);
-            Room r = new Room(width, height, p);
+            Room r = new Room(width, height, p, SEED);
             if (!isOverlap(existingRooms, r)) {                //重叠判断
                 if (xStart + width < world.length && yStart + height < world[0].length) {  //边界判断
                     existingRooms.add(r);
