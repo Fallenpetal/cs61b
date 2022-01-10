@@ -1,6 +1,6 @@
 package byog.Core;
 
-import byog.TileEngine.TERenderer;
+//import byog.TileEngine.TERenderer;
 import byog.TileEngine.TETile;
 import byog.TileEngine.Tileset;
 import byog.lab5.Position;
@@ -307,8 +307,8 @@ public class MapGenerator {
     }
     
     public static TETile[][] returnWorld() {
-        TERenderer ter = new TERenderer();
-        ter.initialize(WIDTH, HEIGHT);
+//        TERenderer ter = new TERenderer();
+//        ter.initialize(WIDTH, HEIGHT);
         initializeWorld();
         fillMap();
         randomDrawRoom(100);
@@ -319,7 +319,7 @@ public class MapGenerator {
         fillAllEnds();
         destroyExtralWall();
         addGate();
-        ter.renderFrame(world);
+//        ter.renderFrame(world);
         return world;
     }
 

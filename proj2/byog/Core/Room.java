@@ -7,15 +7,15 @@ import byog.lab5.Position;
 import java.util.Random;
 
 public class Room {
-    public int width;
-    public int height;
-    public int xStart;
-    public int yStart;
+    protected int width;
+    protected int height;
+    protected int xStart;
+    protected int yStart;
     private static final Random RANDOM = new Random();
-    public Position leftBottom;
-    public Position rightBottom;
-    public Position rightTop;
-    public Position leftTop;
+    protected Position leftBottom;
+    protected Position rightBottom;
+    protected Position rightTop;
+    protected Position leftTop;
 
     public Room(int w, int h, Position p) {
         width = w - 1;
@@ -67,13 +67,13 @@ public class Room {
         return true;
     }
 
-    public void drawVerticalWall(TETile[][] world, Position p, int height, TETile type) {
+    public void drawVerticalWall(TETile[][] world, Position p, int heights, TETile type) {
         int x = p.x;
         int y = p.y;
-        if (y + height >= world[0].length) {
-            height = world[0].length - y - 1;
+        if (y + heights >= world[0].length) {
+            heights = world[0].length - y - 1;
         }
-        for (int i = 0; i < height; i++) {
+        for (int i = 0; i < heights; i++) {
             y = y + 1;
             if (world[x][y] != Tileset.FLOOR) {               //不覆盖已有的地板
                 world[x][y] = type;
@@ -81,13 +81,13 @@ public class Room {
         }
     }
 
-    public void drawHorizontalWall(TETile[][] world, Position p, int width, TETile type) {
+    public void drawHorizontalWall(TETile[][] world, Position p, int widths, TETile type) {
         int x = p.x;
         int y = p.y;
-        if (x + width >= world.length) {
-            width = world.length - x - 1;                       //超过边界则截断
+        if (x + widths >= world.length) {
+            widths = world.length - x - 1;                       //超过边界则截断
         }
-        for (int i = 0; i < width; i++) {
+        for (int i = 0; i < widths; i++) {
             x = x + 1;
             if (world[x][y] != Tileset.FLOOR) {
                 world[x][y] = type;
