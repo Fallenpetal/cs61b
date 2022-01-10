@@ -9,14 +9,14 @@ import java.util.Random;
 
 public class MapGenerator {
 
-    private static final int WIDTH = 89;
-    private static final int HEIGHT = 45;
-    private static long SEED;
-    private static ArrayList<Room> existingRooms = new ArrayList<>();
-    private static int[][] visited = new int[WIDTH][HEIGHT];        // 0表示未访问， 1表示访问了
-    private static int[][] joinedList = new int[WIDTH][HEIGHT];     // 0表示未加入候选, 1表示已加入候选
-    private static ArrayList<Point> candidateList = new ArrayList<>();
-    private static TETile[][] world = new TETile[WIDTH][HEIGHT];
+    private final int WIDTH = 89;
+    private final int HEIGHT = 45;
+    private long SEED;
+    private ArrayList<Room> existingRooms = new ArrayList<>();
+    private int[][] visited = new int[WIDTH][HEIGHT];        // 0表示未访问， 1表示访问了
+    private int[][] joinedList = new int[WIDTH][HEIGHT];     // 0表示未加入候选, 1表示已加入候选
+    private ArrayList<Point> candidateList = new ArrayList<>();
+    private TETile[][] world = new TETile[WIDTH][HEIGHT];
 
     public MapGenerator(long seedInput) {
         SEED = seedInput;
