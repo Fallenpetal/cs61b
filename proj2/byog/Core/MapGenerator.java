@@ -11,7 +11,7 @@ public class MapGenerator {
 
     private static final int WIDTH = 89;
     private static final int HEIGHT = 45;
-    private long SEED = 0;
+    private static long SEED;
     private static ArrayList<Room> existingRooms = new ArrayList<>();
     private static int[][] visited = new int[WIDTH][HEIGHT];        // 0表示未访问， 1表示访问了
     private static int[][] joinedList = new int[WIDTH][HEIGHT];     // 0表示未加入候选, 1表示已加入候选

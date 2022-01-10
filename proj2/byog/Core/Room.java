@@ -11,7 +11,7 @@ public class Room {
     protected int height;
     protected int xStart;
     protected int yStart;
-    private long SEED = 0;
+    private static long SEED;
     protected Position leftBottom;
     protected Position rightBottom;
     protected Position rightTop;
