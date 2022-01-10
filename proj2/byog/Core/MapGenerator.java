@@ -11,7 +11,7 @@ public class MapGenerator {
 
     private static final int WIDTH = 89;
     private static final int HEIGHT = 45;
-    private static long SEED = 0;
+    private long SEED = 0;
     private static ArrayList<Room> existingRooms = new ArrayList<>();
     private static int[][] visited = new int[WIDTH][HEIGHT];        // 0表示未访问， 1表示访问了
     private static int[][] joinedList = new int[WIDTH][HEIGHT];     // 0表示未加入候选, 1表示已加入候选
@@ -23,7 +23,7 @@ public class MapGenerator {
     }
 
 
-    public static boolean isOverlap(ArrayList<Room> L, Room r) {
+    public boolean isOverlap(ArrayList<Room> L, Room r) {
         for (Room it : L) {
             if (r.isOverlap(it)) {
                 return true;
@@ -33,7 +33,7 @@ public class MapGenerator {
     }
 
 
-    public static void randomDrawRoom(int i) {
+    public void randomDrawRoom(int i) {
         Random gameRandom = new Random(SEED);
         while (i > 0) {
             int xStart = gameRandom.nextInt(WIDTH - 1) + 1;
@@ -52,7 +52,7 @@ public class MapGenerator {
         }
     }
 
-    public static void initializeRoom(ArrayList<Room> rooms) {
+    public void initializeRoom(ArrayList<Room> rooms) {
         for (var it : rooms) {
             for (int i = it.xStart; i <= it.rightBottom.x; i++) {
                 for (int j = it.yStart; j <= it.leftTop.y; j++) {
@@ -63,7 +63,7 @@ public class MapGenerator {
         }
     }
 
-    public static void fillMap() {
+    public void fillMap() {
         for (int y = 0; y < HEIGHT; y++) {
             for (int x = 0; x < WIDTH; x++) {
                 if (x == 0 || y == 0 || x == WIDTH - 1 || y == HEIGHT - 1) {
@@ -77,7 +77,7 @@ public class MapGenerator {
         }
     }
 
-    public static Point firstSelectPoint() {
+    public Point firstSelectPoint() {
         Random gameRandom = new Random(SEED);
         int x = 0;
         int y = 0;
@@ -96,7 +96,7 @@ public class MapGenerator {
         return p;
     }
 
-    public static void addCandidateList(Point p) {
+    public void addCandidateList(Point p) {
         int x = 0;
         int y = 0;
         int[][] next = new int[][]{{0, 2}, {2, 0}, {0, -2}, {-2, 0}};         //上,右，下，左
@@ -114,7 +114,7 @@ public class MapGenerator {
         }
     }
 
-    public static void breakWall(Point p) {
+    public void breakWall(Point p) {
         Random gameRandom = new Random(SEED);
         int x = 0;
         int y = 0;
@@ -150,7 +150,7 @@ public class MapGenerator {
         candidateList.remove(p);
     }
 
-    public static Point selectPointFromList() {
+    public Point selectPointFromList() {
         Random gameRandom = new Random(SEED);
         int size = candidateList.size();
         int i = gameRandom.nextInt(size);
@@ -160,7 +160,7 @@ public class MapGenerator {
         return centerPoint;
     }
 
-    public static void breakAllWall() {
+    public void breakAllWall() {
         Point pfirst = firstSelectPoint();
         addCandidateList(pfirst);
         while (!candidateList.isEmpty()) {
@@ -170,7 +170,7 @@ public class MapGenerator {
     }
 
 
-    public static void randomBreakRoomWall(Room r) {
+    public void randomBreakRoomWall(Room r) {
         int flag = 0;                  //随机地在Room的四条边界上移动,0为bottom,1为top,2为left,3为right
         Position p = r.randomMove(flag);
         int x = p.x;
@@ -206,13 +206,13 @@ public class MapGenerator {
         }
     }
 
-    public static void breakAllRoom(ArrayList<Room> rooms) {
+    public void breakAllRoom(ArrayList<Room> rooms) {
         for (var it : rooms) {
             randomBreakRoomWall(it);
         }
     }
 
-    public static void fillMapWithFloor() {
+    public void fillMapWithFloor() {
         for (int x = 1; x < WIDTH; x++) {
             for (int y = 1; y < HEIGHT; y++) {
                 if (world[x][y].equals(Tileset.NOTHING)) {
@@ -222,7 +222,7 @@ public class MapGenerator {
         }
     }
 
-    public static boolean isDeadEnds(int xStart, int yStart) {
+    public boolean isDeadEnds(int xStart, int yStart) {
         int x = 0;
         int y = 0;
         ArrayList<Point> deadEnds = new ArrayList<>();
@@ -244,7 +244,7 @@ public class MapGenerator {
         return false;
     }
 
-    public static void fillAllEnds() {
+    public void fillAllEnds() {
         boolean completed = false;                //胡同有深度，一轮遍历只能填一格，又会形成一个小一点的胡同
         while (!completed) {                                   //因此多次遍历Map，直至填充完毕
             completed = true;
@@ -262,7 +262,7 @@ public class MapGenerator {
     }
 
 
-    public static void destroyExtralWall() {
+    public void destroyExtraWall() {
         int[][] next = new int[][]{{1, 1}, {1, -1}, {-1, -1}, {-1, 1}};
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
@@ -286,7 +286,7 @@ public class MapGenerator {
         }
     }
 
-    public static void addGate() {
+    public void addGate() {
         Random gameRandom = new Random(SEED);
         while (true) {
             int x = gameRandom.nextInt(WIDTH);
@@ -298,7 +298,7 @@ public class MapGenerator {
         }
     }
 
-    public static void initializeWorld() {
+    public void initializeWorld() {
         for (int x = 0; x < WIDTH; x += 1) {
             for (int y = 0; y < HEIGHT; y += 1) {
                 world[x][y] = Tileset.NOTHING;
@@ -306,7 +306,7 @@ public class MapGenerator {
         }
     }
     
-    public static TETile[][] returnWorld() {
+    public TETile[][] returnWorld() {
 //        TERenderer ter = new TERenderer();
 //        ter.initialize(WIDTH, HEIGHT);
         initializeWorld();
@@ -317,7 +317,7 @@ public class MapGenerator {
         breakAllRoom(existingRooms);
         fillMapWithFloor();
         fillAllEnds();
-        destroyExtralWall();
+        destroyExtraWall();
         addGate();
 //        ter.renderFrame(world);
         return world;
