@@ -1,7 +1,9 @@
 package byog.Core;
 
 
-public class Point {
+import java.io.Serializable;
+
+public class Point implements Serializable {
     protected int x;
     protected int y;
     public Point(int xx, int yy) {

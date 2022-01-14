@@ -95,7 +95,7 @@ public class MemoryGameSolution {
         drawFrame(input);
 
         while (input.length() < n) {
-            if (!StdDraw.hasNextKeyTyped()) {
+            if (!StdDraw.hasNextKeyTyped()) {          //如果没有检测到键盘输入，则一直循环
                 continue;
             }
             char key = StdDraw.nextKeyTyped();

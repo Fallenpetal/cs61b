@@ -1,13 +1,15 @@
 package byog.Core;
 
-//import byog.TileEngine.TERenderer;
+import byog.TileEngine.TERenderer;
 import byog.TileEngine.TETile;
 import byog.TileEngine.Tileset;
 import byog.lab5.Position;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class MapGenerator {
+public class MapGenerator implements Serializable {
 
     private final int WIDTH = 89;
     private final int HEIGHT = 45;
@@ -16,7 +18,8 @@ public class MapGenerator {
     private int[][] visited = new int[WIDTH][HEIGHT];        // 0表示未访问， 1表示访问了
     private int[][] joinedList = new int[WIDTH][HEIGHT];     // 0表示未加入候选, 1表示已加入候选
     private ArrayList<Point> candidateList = new ArrayList<>();
-    private TETile[][] world = new TETile[WIDTH][HEIGHT];
+    protected TETile[][] world = new TETile[WIDTH][HEIGHT];
+    protected Point playerPosition;
 
     public MapGenerator(long seedInput) {
         SEED = seedInput;
@@ -305,10 +308,25 @@ public class MapGenerator {
             }
         }
     }
-    
+
+    public void addPlayer() {
+        Random gameRandom = new Random(SEED);
+        int x = 0;
+        int y = 0;
+        while (true) {
+            x = gameRandom.nextInt(WIDTH);
+            y = gameRandom.nextInt(HEIGHT);
+            if (world[x][y].equals(Tileset.FLOOR)) {
+                world[x][y] = Tileset.PLAYER;
+                break;
+            }
+        }
+        this.playerPosition = new Point(x, y);
+    }
+
     public TETile[][] returnWorld() {
-//        TERenderer ter = new TERenderer();
-//        ter.initialize(WIDTH, HEIGHT);
+        TERenderer ter = new TERenderer();
+        ter.initialize(WIDTH, HEIGHT);
         initializeWorld();
         fillMap();
         randomDrawRoom(100);
@@ -319,24 +337,24 @@ public class MapGenerator {
         fillAllEnds();
         destroyExtraWall();
         addGate();
-//        ter.renderFrame(world);
+        addPlayer();
+        ter.renderFrame(world);
         return world;
     }
 
-//    public static void main(String[] args) {
-//        TERenderer ter = new TERenderer();
-//        ter.initialize(WIDTH, HEIGHT);
-//        initializeWorld();
-//        fillMap();
-//        randomDrawRoom(100);
-//        initializeRoom(existingRooms);
-//        breakAllWall();
-//        breakAllRoom(existingRooms);
-//        fillMapWithFloor();
-//        fillAllEnds();
-//        destroyExtralWall();
-//        addGate();
-//        ter.renderFrame(world);
-//
-//    }
+    public TETile[][] returnTETileArray() {
+        initializeWorld();
+        fillMap();
+        randomDrawRoom(100);
+        initializeRoom(existingRooms);
+        breakAllWall();
+        breakAllRoom(existingRooms);
+        fillMapWithFloor();
+        fillAllEnds();
+        destroyExtraWall();
+        addGate();
+        addPlayer();
+        return world;
+    }
+
 }

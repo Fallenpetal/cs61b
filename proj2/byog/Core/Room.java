@@ -4,9 +4,10 @@ import byog.TileEngine.TETile;
 import byog.TileEngine.Tileset;
 import byog.lab5.Position;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class Room {
+public class Room implements Serializable {
     protected int width;
     protected int height;
     protected int xStart;
