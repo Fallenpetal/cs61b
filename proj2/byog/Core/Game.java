@@ -127,7 +127,7 @@ public class Game implements Serializable {
     }
 
     public void congratulations() {
-        String s = "Congratulations! You Win";
+        String s = "Congratulations! You Win.";
         drawFrame(s, WIDTH / 2, HEIGHT / 2);
     }
 
